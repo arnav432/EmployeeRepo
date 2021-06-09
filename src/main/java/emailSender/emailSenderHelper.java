@@ -17,9 +17,6 @@ import javax.mail.internet.MimeMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import orderTracker.trackOrders;
-import orderTrackingDatabase.orderLinks;
-
 public class emailSenderHelper {
 
 	public static Logger logger = LoggerFactory.getLogger(emailSenderHelper.class);
@@ -32,9 +29,6 @@ public class emailSenderHelper {
 	
 	private static Properties properties = getProperties();
 	
-	static orderLinks orders = new orderLinks();
-	
-	static trackOrders tracker = new trackOrders();
 	
 	static Session session = Session.getInstance(properties, new Authenticator() {
 		
@@ -74,24 +68,7 @@ public class emailSenderHelper {
 
 		return null;
 	}
-	
-	public static void sendWelcomeMessage() throws FileNotFoundException {
-		logger.info("Sending Welcome Message...");
-		Message message = new MimeMessage(session);
-		
-		try {
-			message.setFrom(new InternetAddress(accountEmail));
-			message.setRecipient(Message.RecipientType.TO, new InternetAddress(RECIPIENT));
-			message.setSubject("Order Tracker - Welcome Message");
-			message.setText("!!!!!!!!!!!!!Price Tracker Successfully Started!!!!!!!!!!!!!"+"\n"+tracker.getFileSize()+" items being tracked");
-			sendMail(message);
-		} catch (AddressException e) {
-			e.printStackTrace();
-		} catch (MessagingException e) {
-			e.printStackTrace();
-		}
-		
-	}
+
 	
 	public static void sendStockStatusMessage(String LINK, float currentPrice) {
 		logger.info("Sending product stock status message...");
@@ -110,62 +87,8 @@ public class emailSenderHelper {
 		}
 		
 	}
+
 	
-	public static void sendRestartMessage() throws FileNotFoundException {
-		logger.info("Sending Restart Message...");
-		Message message = new MimeMessage(session);
-		
-		try {
-			message.setFrom(new InternetAddress(accountEmail));
-			message.setRecipient(Message.RecipientType.TO, new InternetAddress(RECIPIENT));
-			message.setSubject("Order Tracker - Restarted Message");
-			message.setText("!!!!!!!!!!!!!Price Tracker Successfully Restarted!!!!!!!!!!!!!"+"\n"+tracker.getFileSize()+" items being tracked");
-			sendMail(message);
-		} catch (AddressException e) {
-			e.printStackTrace();
-		} catch (MessagingException e) {
-			e.printStackTrace();
-		}
-		
-	}
-	
-	public void sendNewProductAdditionMessage(String productLink) throws FileNotFoundException {
-		
-		logger.info("Sending product addition message...");
-		Message message = new MimeMessage(session);
-		
-		try {
-			message.setFrom(new InternetAddress(accountEmail));
-			message.setRecipient(Message.RecipientType.TO, new InternetAddress(RECIPIENT));
-			message.setSubject("Order Tracker - product added Message");
-			message.setText("!!!!!!!!!!!!!The following product has been added!!!!!!!!!!!!!"+"\n"+productLink+"\n"+tracker.getFileSize()+" items being tracked"+"\n"+"Restarting !!!");
-			sendMail(message);
-		} catch (AddressException e) {
-			e.printStackTrace();
-		} catch (MessagingException e) {
-			e.printStackTrace();
-		}
-		
-	}
-	
-	public void sendProductDeletionMessage(String productLink) throws FileNotFoundException {
-		
-		logger.info("Sending product deletion message...");
-		Message message = new MimeMessage(session);
-		
-		try {
-			message.setFrom(new InternetAddress(accountEmail));
-			message.setRecipient(Message.RecipientType.TO, new InternetAddress(RECIPIENT));
-			message.setSubject("Order Tracker - product deleted Message");
-			message.setText("!!!!!!!!!!!!!The following product has been deleted!!!!!!!!!!!!!"+"\n"+productLink+"\n"+tracker.getFileSize()+" items being tracked"+"\n"+"Restarting !!!");
-			sendMail(message);
-		} catch (AddressException e) {
-			e.printStackTrace();
-		} catch (MessagingException e) {
-			e.printStackTrace();
-		}
-		
-	}
 	
 	public void sendVaccineAvailibilityMessage() {
 		

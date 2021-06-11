@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class DashboardController {
 
-
+/*
 
 	public static Logger logger = LoggerFactory.getLogger(DashboardController.class);
 
@@ -40,5 +40,5 @@ public class DashboardController {
 		
 		
 	}
-
+*/
 }

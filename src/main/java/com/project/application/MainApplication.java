@@ -9,20 +9,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import emailSender.emailSenderHelper;
-
 
 @SpringBootApplication
-public class Application {
+public class MainApplication {
 	
-	private static Logger logger = LoggerFactory.getLogger(Application.class);
+	private static Logger logger = LoggerFactory.getLogger(MainApplication.class);
 	
 	@SuppressWarnings("static-access")
 	public static void main(String[] args) throws MessagingException, InterruptedException, IOException {
 		
-		emailSenderHelper sender = new emailSenderHelper();
-		
-		SpringApplication.run(Application.class, args);
+		SpringApplication.run(MainApplication.class, args);
 
 
 	}

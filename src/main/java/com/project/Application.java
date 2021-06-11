@@ -1,26 +1,24 @@
-package com.project.application;
-
-import java.io.IOException;
-
-import javax.mail.MessagingException;
+package com.project;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
-import emailSender.emailSenderHelper;
+import com.project.controllers.DashboardController;
 
 
 @SpringBootApplication
+@ComponentScan(basePackages = { "com.project.controllers",
+        "com.project.entities", "com.project.repositories",
+        "com.project.services" })
 public class Application {
 	
 	private static Logger logger = LoggerFactory.getLogger(Application.class);
 	
 	@SuppressWarnings("static-access")
-	public static void main(String[] args) throws MessagingException, InterruptedException, IOException {
-		
-		emailSenderHelper sender = new emailSenderHelper();
+	public static void main(String[] args) {
 		
 		SpringApplication.run(Application.class, args);
 

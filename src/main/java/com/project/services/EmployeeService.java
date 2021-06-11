@@ -7,7 +7,7 @@ import com.project.entities.Employee;
 
 public interface EmployeeService {
 	
-	public boolean addEmployee(Employee employee);
+	public Employee addEmployee(Employee employee);
 
 	List<Employee> getAllEmployees();
 	

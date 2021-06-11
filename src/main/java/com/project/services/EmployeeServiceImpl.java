@@ -23,20 +23,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 
 	@Override
-	public boolean addEmployee(Employee employee) {
-		
+	public Employee addEmployee(Employee employee) {
+		Employee employeeSaved = new Employee();
 		
 		try {
 			logger.info("Adding employee to database : {}",employee);
-			employeeRepo.save(employee);
+			employeeSaved = employeeRepo.save(employee);
 		}
 		catch(Exception e) {
 			e.printStackTrace();
-			return false;
+			
 		}
 		
 		
-		return true;
+		return employeeSaved;
 	}
 	
 	@Override

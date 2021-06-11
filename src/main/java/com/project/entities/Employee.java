@@ -32,10 +32,12 @@ public class Employee {
 	
 	@Column
 	@NotBlank(message = "First name should not be empty")
-	@Length(min = 2, max = 50, message = "Name should be between 2 and 50 characters")
+	@Length(min = 2, max = 50, message = "First Name should be between 2 and 50 characters")
 	private String firstName;
 	
 	@Column
+	@NotBlank(message = "Last name should not be empty")
+	@Length(min = 2, max = 50, message = "Last Name should be between 2 and 50 characters")
 	private String lastName;
 	
 	@Column
@@ -47,15 +49,20 @@ public class Employee {
 	private int startDate;
 	
 	@Column
+	@NotBlank(message = "Designation should not be empty")
+	@Length(min = 2, max = 50, message = "Name should be between 2 and 50 characters")
 	private String designation;
 	
 	@Column
+	@NotBlank(message = "Department should not be empty")
 	private String department;
 	
 	@Column
+	@NotNull(message = "End date cannot be empty")
 	private int endDate;
 	
 	@Column
+	@NotBlank(message = "Status should not be empty")
 	private String status;
 	
 	@Column
@@ -63,15 +70,18 @@ public class Employee {
 	private int dateOfBirth;
 	
 	@Column
+	@NotBlank(message = "Reporting Manager should not be empty")
 	private String reportingManager;
 	
 	@Column
 	private String gender;
 	
 	@Column
+	@NotBlank(message = "Blood group should not be empty")
 	private String bloodGroup;
 	
 	@Column
+	@NotBlank(message = "Address should not be empty")
 	private String address;
 
 	public int getId() {

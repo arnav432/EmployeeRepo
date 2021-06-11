@@ -11,7 +11,15 @@
 </html>
 
 <form action="#" th:action="@{/employeeAdded}" method="post" class="employeeform" th:object="${employee}">
-    <!--  <div align="center"><input type="text" th:field="*{id}" placeholder="Add id"></div>-->
+    
+    <div align="center"><span th:utext="${resultingMessage}" ></span></div>
+	<div align="center" th:if="${bindingResult != null && bindingResult.getAllErrors() != null}" >
+	<ul th:each="data : ${bindingResult.getAllErrors()}">
+	 	<!-- <li th:text="${data.getObjectName() + ' :: ' + data.getDefaultMessage()}"></li> -->
+	 	<li th:text="${data.getDefaultMessage()}"></li>
+	</ul>
+	</div>
+    
     <br>
     <div align="center"><label>First name:</label><input type="text" th:field="*{firstName}" class="employeeform" placeholder="Add first name"></div>
     <br>
@@ -40,12 +48,7 @@
     <div align="center"><label>Address:</label><input type="text" th:field="*{address}" class="employeeform" placeholder="Add address"></div>
     <br>
 
-	<span th:utext="${resultingMessage}" ></span>
-	<div th:if="${bindingResult != null && bindingResult.getAllErrors() != null}" >
-	<ul th:each="data : ${bindingResult.getAllErrors()}">
-	 	<li th:text="${data.getObjectName() + ' :: ' + data.getDefaultMessage()}"></li>
-	</ul>
-	</div>
+	
 
 	<div align="center"><input type="submit" value="Add employee to database"></div>
 </form>

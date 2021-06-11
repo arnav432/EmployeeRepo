@@ -52,6 +52,7 @@ public class DashboardController {
 	public ModelAndView employeeAdded( @Valid Employee employee, BindingResult bindingResult, ModelMap modelMap) throws IOException{
 		logger.info("New emplyee being added : {}",employee);
 		ModelAndView modelAndView = new ModelAndView();
+		Employee employeeSaved = new Employee();
 		try {
 			//validation check
 			if(bindingResult.hasErrors()) {
@@ -63,7 +64,9 @@ public class DashboardController {
 				// if no errors are there, we continue with persisting the employee data in database
 				modelAndView.addObject("resultingMessage", "Emlpoyee Addition success !!!");
 				modelAndView.setViewName("EmployeeAdditionSuccessPage");
-				employeeService.addEmployee(employee);
+				employeeSaved = employeeService.addEmployee(employee);
+				modelAndView.addObject("employeeId", employeeSaved.getId());
+				modelAndView.addObject("employeeName", employeeSaved.getFirstName());
 				return modelAndView;
 			}
 		}
